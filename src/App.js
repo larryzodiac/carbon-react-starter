@@ -8,7 +8,7 @@ import React from 'react';
 import './App.scss';
 import { Button } from 'carbon-components-react';
 import { Content } from 'carbon-components-react/lib/components/UIShell';
-import Nav from './components/nav';
+import Nav from './components/nav/Nav';
 
 function App() {
   return (

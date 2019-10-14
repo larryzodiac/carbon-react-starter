@@ -26,6 +26,7 @@ import {
   HeaderGlobalAction,
   SkipToContent,
 } from 'carbon-components-react/lib/components/UIShell';
+
 const Nav = () => (
   <Header aria-label="Carbon Tutorial">
     <SkipToContent />
