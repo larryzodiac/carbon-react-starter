@@ -5,8 +5,6 @@
 */
 
 // Icons
-import Notification20 from '@carbon/icons-react/lib/notification/20';
-import UserAvatar20 from '@carbon/icons-react/lib/user--avatar/20';
 import AppSwitcher20 from '@carbon/icons-react/lib/app-switcher/20';
 
 /*
@@ -16,37 +14,91 @@ import AppSwitcher20 from '@carbon/icons-react/lib/app-switcher/20';
   and go straight to the main content.
 */
 
-import React from 'react';
+import React, { Component } from 'react';
+// Router
+import { Link } from 'react-router-dom';
+// Carbon
 import {
   Header,
+  HeaderContainer,
+  HeaderMenuButton,
   HeaderName,
   HeaderNavigation,
+  HeaderMenu,
   HeaderMenuItem,
-  HeaderGlobalBar,
-  HeaderGlobalAction,
+  HeaderSideNavItems,
   SkipToContent,
+  SideNav,
+  SideNavItems,
 } from 'carbon-components-react/lib/components/UIShell';
 
-const Nav = () => (
-  <Header aria-label="Carbon Tutorial">
-    <SkipToContent />
-    <HeaderName href="/" prefix="IBM">
-      Carbon Tutorial
-    </HeaderName>
-    <HeaderNavigation aria-label="Carbon Tutorial">
-      <HeaderMenuItem href="/repos">Repositories</HeaderMenuItem>
-    </HeaderNavigation>
-    <HeaderGlobalBar>
-      <HeaderGlobalAction aria-label="Notifications">
-        <Notification20 />
-      </HeaderGlobalAction>
-      <HeaderGlobalAction aria-label="User Avatar">
-        <UserAvatar20 />
-      </HeaderGlobalAction>
-      <HeaderGlobalAction aria-label="App Switcher">
-        <AppSwitcher20 />
-      </HeaderGlobalAction>
-    </HeaderGlobalBar>
-  </Header>
-);
+class Nav extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isSideNavExpanded: false,
+    };
+    this.onClickSideNavExpand = this.onClickSideNavExpand.bind(this);
+  }
+
+  onClickSideNavExpand() {
+    this.setState((prevState) => ({ isSideNavExpanded: !prevState.isSideNavExpanded }));
+  }
+
+  render() {
+    const { isSideNavExpanded } = this.state;
+    return (
+      <>
+        <Header aria-label="IBM Platform Name">
+
+          <SkipToContent />
+
+          <HeaderMenuButton
+            aria-label="Open menu"
+            onClick={this.onClickSideNavExpand}
+            isActive={isSideNavExpanded}
+          />
+
+          <Link to={'/'}>
+            <HeaderName prefix="Evan MacHale">
+              [IxD@NCAD]
+            </HeaderName>
+          </Link>
+
+          <HeaderNavigation aria-label="Evan MacHale [IxD@NCAD]">
+            <HeaderMenu aria-label="Fundamentals" menuLinkName="Fundamentals">
+              <Link to={'/man+machine'}>
+                <HeaderMenuItem href="#">Man & Machine</HeaderMenuItem>
+              </Link>
+              <Link to={'/people+place'}>
+                <HeaderMenuItem href="#">People & Place</HeaderMenuItem>
+              </Link>
+            </HeaderMenu>
+          </HeaderNavigation>
+
+          <SideNav
+            aria-label="Side navigation"
+            expanded={isSideNavExpanded}
+            isPersistent={false}
+          >
+            <SideNavItems>
+              <HeaderSideNavItems>
+                <HeaderMenu aria-label="Fundamentals" menuLinkName="IxD Fundamentals">
+                  <Link to={'/man+machine'}>
+                    <HeaderMenuItem href="#">Man & Machine</HeaderMenuItem>
+                  </Link>
+                  <Link to={'/people+place'}>
+                    <HeaderMenuItem href="#">People & Place</HeaderMenuItem>
+                  </Link>
+                </HeaderMenu>
+              </HeaderSideNavItems>
+            </SideNavItems>
+          </SideNav>
+          
+        </Header>
+      </>
+    );
+  }
+}
+
 export default Nav;
