@@ -14,14 +14,6 @@ import AppSwitcher20 from '@carbon/icons-react/lib/app-switcher/20';
   and go straight to the main content.
 */
 
-/*
-  Problem with this file.
-  Using React Router <Link>
-  with IBM <HeaderName>, <HeaderMenu>, <HeaderMenuItem>
-  Creates error :
-  "Warning: validateDOMNesting(...): <a> cannot appear as a descendant of <a>."
-*/
-
 import React, { Component } from 'react';
 // Router
 import { Link } from 'react-router-dom';
@@ -67,19 +59,19 @@ class Nav extends Component {
             isActive={isSideNavExpanded}
           />
 
-          <Link to={'/'} element='div'>
-            <HeaderName prefix="Evan MacHale">
+          <Link to={'/'}>
+            <HeaderName prefix="Evan MacHale" element='div'>
               [IxD@NCAD]
             </HeaderName>
           </Link>
 
           <HeaderNavigation aria-label="Evan MacHale [IxD@NCAD]">
-            <HeaderMenu aria-label="Fundamentals" menuLinkName="Fundamentals">
-              <Link to={'/man+machine'} element='div'>
-                <HeaderMenuItem>Man & Machine</HeaderMenuItem>
+            <HeaderMenu aria-label="Fundamentals" menuLinkName="Fundamentals" element='div'>
+              <Link to={'/man+machine'}>
+                <HeaderMenuItem element='div'>Man & Machine</HeaderMenuItem>
               </Link>
-              <Link to={'/people+place'} element='div'>
-                <HeaderMenuItem>People & Place</HeaderMenuItem>
+              <Link to={'/people+place'}>
+                <HeaderMenuItem element='div'>People & Place</HeaderMenuItem>
               </Link>
             </HeaderMenu>
           </HeaderNavigation>
@@ -91,12 +83,12 @@ class Nav extends Component {
           >
             <SideNavItems>
               <HeaderSideNavItems>
-                <HeaderMenu aria-label="Fundamentals" menuLinkName="IxD Fundamentals">
-                  <Link to={'/man+machine'} element='div'>
-                    <HeaderMenuItem>Man & Machine</HeaderMenuItem>
+                <HeaderMenu aria-label="Fundamentals" menuLinkName="IxD Fundamentals" element='div'>
+                  <Link to={'/man+machine'}>
+                    <HeaderMenuItem element='div'>Man & Machine</HeaderMenuItem>
                   </Link>
-                  <Link to={'/people+place'} element='div'>
-                    <HeaderMenuItem>People & Place</HeaderMenuItem>
+                  <Link to={'/people+place'}>
+                    <HeaderMenuItem element='div'>People & Place</HeaderMenuItem>
                   </Link>
                 </HeaderMenu>
               </HeaderSideNavItems>
